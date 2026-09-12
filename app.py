@@ -133,7 +133,7 @@ def ask():
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": user_message}
             ],
-            model="llama3-8b-8192",  # الموديل المستقر الجديد
+            model="llama-3.1-8b-instant",  # الموديل المستقر الجديد
             temperature=0.7,
         )
         reply = chat_completion.choices[0].message.content
@@ -170,7 +170,7 @@ def voice_ask():
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": user_text}
             ],
-            model="llama3-8b-8192",
+            model="llama-3.1-8b-instant",
             temperature=0.7,
         )
         reply = f"🗣️ سمعت منك: \"{user_text}\"\n\n{chat_completion.choices[0].message.content}"
