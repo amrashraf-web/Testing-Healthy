@@ -77,7 +77,7 @@ def ask():
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": user_message}
             ],
-            model="llama-3.3-70b-versatile",
+            model="llama-3.1-8b-instant",
             temperature=0.7,
         )
         reply = chat_completion.choices[0].message.content
@@ -121,7 +121,7 @@ def handle_telegram_input(message):
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": user_text}
             ],
-            model="llama-3.3-70b-versatile",
+            model="llama-3.1-8b-instant",
             temperature=0.7,
         )
         ai_response = chat_completion.choices[0].message.content
