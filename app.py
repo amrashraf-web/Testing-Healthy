@@ -133,7 +133,7 @@ def ask():
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": user_message}
             ],
-            model="llama-3.1-8b-instant",  # الموديل المستقر الجديد
+            model="openai/gpt-oss-20b",  # تم التحديث لموديل موجود في قائمتك
             temperature=0.7,
         )
         reply = chat_completion.choices[0].message.content
@@ -151,7 +151,7 @@ def voice_ask():
     audio_file.save(audio_path)
 
     try:
-        # تحويل الصوت لنص باستخدام Whisper من Groq
+        # تحويل الصوت لنص باستخدام Whisper المتاح في قائمتك
         with open(audio_path, "rb") as f:
             transcription = client.audio.transcriptions.create(
                 file=(audio_path, f.read()),
@@ -164,13 +164,13 @@ def voice_ask():
         if os.path.exists(audio_path):
             os.remove(audio_path)
 
-        # الرد بالذكاء الاصطناعي
+        # الرد باستخدام نموذج النصوص المتاح في قائمتك
         chat_completion = client.chat.completions.create(
             messages=[
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": user_text}
             ],
-            model="llama-3.1-8b-instant",
+            model="openai/gpt-oss-20b",
             temperature=0.7,
         )
         reply = f"🗣️ سمعت منك: \"{user_text}\"\n\n{chat_completion.choices[0].message.content}"
@@ -213,7 +213,7 @@ def handle_telegram_input(message):
                 {"role": "system", "content": SYSTEM_PROMPT},
                 {"role": "user", "content": user_text}
             ],
-            model="llama3-8b-8192",
+            model="openai/gpt-oss-20b",
             temperature=0.7,
         )
         ai_response = chat_completion.choices[0].message.content
